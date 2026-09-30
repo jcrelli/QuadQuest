@@ -1,0 +1,974 @@
+<!--	
+	Quad Quest
+
+	© 2026 Jonathan Crellin
+
+	Quad Quest is an independent educational simulation
+	and is not affiliated with or endorsed by Waters Corporation.
+-->
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <!-- =====================================================
+         1. PAGE SETUP
+         ===================================================== -->
+
+    <title>Quad Quest</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         2. PAGE TITLE
+         ===================================================== -->
+
+    <h1>Quad Quest</h1>
+
+
+    <!-- =====================================================
+         3. MAIN TUNE PAGE
+         =====================================================
+         Left side:
+             Fluidics
+             MS1 Engineer Settings
+
+         Right side:
+             Mass / Span / Gain settings
+             Four mass spectrum graphs
+             Operate / Standby controls
+         ===================================================== -->
+
+    <div class="tune-page">
+
+
+        <!-- =================================================
+             4. LEFT SIDE
+             ================================================= -->
+
+        <div class="left-side">
+
+
+            <!-- =============================================
+                 5. FLUIDICS
+                 ============================================= -->
+
+            <fieldset class="fluidics-box">
+
+                <legend>Flow Control</legend>
+
+
+                <!-- FLOW CONTROL BUTTONS -->
+
+                <div class="flow-buttons">
+
+                    <button id="infuse-button">Start</button>
+
+                    <button id="refill-button">Refill</button>
+
+                    <button id="purge-button">Purge</button>
+
+                    <button id="dark-mode-button">Dark Mode</button>
+
+                </div>
+
+
+                <!-- FLUIDICS STATUS -->
+
+                <div class="fluidics-row">
+
+                    <label>Status</label>
+
+                    <div id="fluidics-status">
+
+                        <div id="reservoir-bar"></div>
+
+                        <span id="fluidics-status-text">
+                            Idle - 10.00 mins
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFUSION FLOW RATE -->
+
+                <div class="fluidics-row">
+
+                    <label for="flow-rate">
+                        Infusion Flow Rate
+                    </label>
+
+                    <input
+                        id="flow-rate"
+                        type="number"
+                        value="10.0"
+                        step="0.1"
+                    >
+
+                    <span>µL/min</span>
+
+                </div>
+
+
+                <!-- RESERVOIR -->
+
+                <div class="fluidics-row">
+
+                    <label for="reservoir">
+                        Reservoir
+                    </label>
+
+                    <select id="reservoir">
+
+                        <option value="A">A</option>
+
+                        <option value="B">B</option>
+
+                        <option value="Wash">Wash</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- FLOW STATE -->
+
+                <div class="fluidics-row">
+
+                    <label for="flow-state">
+                        Flow State
+                    </label>
+
+                    <select id="flow-state">
+
+                        <option value="Infusion">Infusion</option>
+
+                        <option value="LC">LC</option>
+
+                        <option value="Combined">Combined</option>
+
+                        <option value="Waste" selected>Waste</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- FILL VOLUME -->
+
+                <div class="fluidics-row">
+
+                    <label for="fill-volume">
+                        Fill Volume
+                    </label>
+
+                    <select id="fill-volume">
+
+                        <option value="250">250 (Normal)</option>
+
+                        <option value="100">100 (Hard)</option>
+
+                        <option value="50">50 (Expert)</option>
+
+                    </select>
+
+                    <span>µL</span>
+
+                </div>
+
+            </fieldset>
+
+
+            <!-- =============================================
+                 6. MS1 ENGINEER SETTINGS
+                 ============================================= -->
+
+            <fieldset class="engineer-box">
+
+                <legend>MS1</legend>
+
+
+                <!-- LOW MASS POSITION -->
+
+                <div class="engineer-row">
+
+                    <label for="lm-position-value">
+                        Low Mass Position
+                    </label>
+
+                    <input
+                        id="lm-position-value"
+                        type="number"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                    <input
+                        id="lm-position"
+                        type="range"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                </div>
+
+
+                <!-- HIGH MASS POSITION -->
+
+                <div class="engineer-row">
+
+                    <label for="hm-position-value">
+                        High Mass Position
+                    </label>
+
+                    <input
+                        id="hm-position-value"
+                        type="number"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                    <input
+                        id="hm-position"
+                        type="range"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                </div>
+
+
+                <!-- LOW MASS RESOLUTION -->
+
+                <div class="engineer-row">
+
+                    <label for="lm-resolution-value">
+                        Low Mass Resolution
+                    </label>
+
+                    <input
+                        id="lm-resolution-value"
+                        type="number"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                    <input
+                        id="lm-resolution"
+                        type="range"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                </div>
+
+
+                <!-- HIGH MASS RESOLUTION -->
+
+                <div class="engineer-row">
+
+                    <label for="hm-resolution-value">
+                        High Mass Resolution
+                    </label>
+
+                    <input
+                        id="hm-resolution-value"
+                        type="number"
+                        min="0"
+                        max="4096"
+                        value="2048"
+                    >
+
+                    <input
+                        id="hm-resolution"
+                        type="range"
+                        min="0"
+                        max="4096"
+                        value="2048"
+                    >
+
+                </div>
+
+
+                <!-- RESOLUTION LINEARITY -->
+
+                <div class="engineer-row">
+
+                    <label for="linearity-value">
+                        Resolution Linearity
+                    </label>
+
+                    <input
+                        id="linearity-value"
+                        type="number"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                    <input
+                        id="linearity"
+                        type="range"
+                        min="0"
+                        max="1024"
+                        value="512"
+                    >
+
+                </div>
+
+            </fieldset>
+
+
+            <!-- =============================================
+                 RESOLUTION CHECK
+                 ============================================= -->
+
+            <fieldset class="resolution-check-box">
+
+                <legend>Resolution Check</legend>
+
+                <button id="resolution-check-start">
+                    Start
+                </button>
+
+                <button id="resolution-check-reset">
+                    Reset
+                </button>
+
+                <button id="resolution-check-info">
+                    Info
+                </button>
+
+                <div id="resolution-check-output"></div>
+
+                <button id="resolution-play-again" style="display: none;">
+                    Play Again
+                </button>
+
+            </fieldset>
+
+            <div id="resolution-check-info-box">
+                Welcome to Quad Quest! Can you tune the mass spectrometer before 
+                your setup solution runs out? Put the instrument in Operate, set 
+                up the fluidics, and start your infusion. Reservoirs A and B contain 
+                different masses, so try them both and find the peaks you need.
+                <br>
+                <br>
+                Adjust the engineer settings until all four peaks look good. You 
+                can drag down over a peak to maximize it in its window, change the 
+                span for a wider or narrower view, or close some windows to focus 
+                on individual peaks. When you think your tune is ready, run the 
+                Resolution Check to see how close you are!
+                <br>
+                <br>
+                Want more of a challenge? Try changing the Fill Volume and tune 
+                against the clock with less solution and tighter acceptance criteria. 
+                Do you think you can achieve a perfect score of 100? Have fun!
+                <br>
+                <br>
+                Feedback is encouraged! crellinjon@gmail.com
+            </div>
+
+        </div>
+
+
+
+
+        <!-- =================================================
+             7. RIGHT SIDE
+             ================================================= -->
+
+        <div class="right-side">
+
+
+            <!-- =============================================
+                 8. MASS / SPAN / GAIN SETTINGS
+                 ============================================= -->
+
+            <div class="mass-settings">
+
+                <div class="quad-quest-logo">
+                    <img src="QQLogo.png" alt="Quad Quest">
+                </div>
+
+                <table class="mass-table">
+
+                    <tr>
+
+                        <th></th>
+                        <th></th>
+                        <th>Mass</th>
+                        <th>Span</th>
+                        <th>Gain</th>
+
+                    </tr>
+
+
+                    <!-- GRAPH 1 SETTINGS -->
+
+                    <tr>
+
+                        <td>
+                            <input
+                                id="graph-enabled-1"
+                                type="checkbox"
+                                checked
+                            >
+                        </td>
+
+                        <td>1</td>
+
+                        <td>
+                            <input
+                                id="mass-1"
+                                type="number"
+                                value="59.1"
+                                step="0.1"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="span-1"
+                                type="number"
+                                value="5"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="gain-1"
+                                type="number"
+                                value="1"
+                            >
+                        </td>
+
+                    </tr>
+
+
+                    <!-- GRAPH 2 SETTINGS -->
+
+                    <tr>
+
+                        <td>
+                            <input
+                                id="graph-enabled-2"
+                                type="checkbox"
+                                checked
+                            >
+                        </td>
+
+                        <td>2</td>
+
+                        <td>
+                            <input
+                                id="mass-2"
+                                type="number"
+                                value="455.3"
+                                step="0.1"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="span-2"
+                                type="number"
+                                value="5"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="gain-2"
+                                type="number"
+                                value="2"
+                            >
+                        </td>
+
+                    </tr>
+
+
+                    <!-- GRAPH 3 SETTINGS -->
+
+                    <tr>
+
+                        <td>
+                            <input
+                                id="graph-enabled-3"
+                                type="checkbox"
+                                checked
+                            >
+                        </td>
+
+                        <td>3</td>
+
+                        <td>
+                            <input
+                                id="mass-3"
+                                type="number"
+                                value="1080.8"
+                                step="0.1"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="span-3"
+                                type="number"
+                                value="5"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="gain-3"
+                                type="number"
+                                value="10"
+                            >
+                        </td>
+
+                    </tr>
+
+
+                    <!-- GRAPH 4 SETTINGS -->
+
+                    <tr>
+
+                        <td>
+                            <input
+                                id="graph-enabled-4"
+                                type="checkbox"
+                                checked
+                            >
+                        </td>
+
+                        <td>4</td>
+
+                        <td>
+                            <input
+                                id="mass-4"
+                                type="number"
+                                value="2034.6"
+                                step="0.1"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="span-4"
+                                type="number"
+                                value="5"
+                            >
+                        </td>
+
+                        <td>
+                            <input
+                                id="gain-4"
+                                type="number"
+                                value="20"
+                            >
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <!-- =============================================
+                 9. MASS SPECTRUM GRAPHS
+                 =============================================
+                 Each graph contains:
+
+                     graph-header
+                         graph-title
+                         graph-info
+                             graph-peak
+                             graph-gain
+
+                     plot-area
+                         test-peak
+
+                     x-axis
+
+                 IMPORTANT:
+                 plot-area closes BEFORE x-axis.
+                 Each graph closes BEFORE the next graph begins.
+                 ============================================= -->
+
+            <div class="graphs">
+
+
+                <!-- GRAPH 1 -->
+
+                <div class="graph">
+
+                    <div class="graph-header">
+
+                        <div
+                            class="graph-title"
+                            id="graph-title-1"
+                        >
+                            59.1
+                        </div>
+
+                        <div class="graph-info">
+
+                            <div
+                                class="graph-peak"
+                                id="graph-peak-1"
+                            >
+                                0.00e0
+                            </div>
+
+                            <div
+                                class="graph-gain"
+                                id="graph-gain-1"
+                            >
+                                x1
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="plot-area">
+
+                        <svg class="noise-trace"
+                             preserveAspectRatio="none"
+                             viewBox="0 0 1000 100">
+                            <polyline class="noise-line"></polyline>
+                        </svg>
+
+                        <svg class="test-peak"
+                             viewBox="40 0 20 100"
+                             preserveAspectRatio="none">
+
+                            <path class="peak-shape"
+                                  d="M 0 100
+                                    L 30 100
+                                    C 38 99, 41 94, 42 82
+                                    L 46 12
+                                    C 46.5 4, 48 0, 50 0
+                                    C 52 0, 53.5 4, 54 12
+                                    L 58 82
+                                    C 59 94, 62 99, 70 100
+                                    L 100 100
+                                    Z">
+                            </path>
+                        </svg>
+
+                    </div>
+
+                    <div
+                        class="x-axis"
+                        id="x-axis-1"
+                    ></div>
+
+                </div>
+
+
+                <!-- GRAPH 2 -->
+
+                <div class="graph">
+
+                    <div class="graph-header">
+
+                        <div
+                            class="graph-title"
+                            id="graph-title-2"
+                        >
+                            455.3
+                        </div>
+
+                        <div class="graph-info">
+
+                            <div
+                                class="graph-peak"
+                                id="graph-peak-2"
+                            >
+                                0.00e0
+                            </div>
+
+                            <div
+                                class="graph-gain"
+                                id="graph-gain-2"
+                            >
+                                x2
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="plot-area">
+
+                        <svg class="noise-trace"
+                             preserveAspectRatio="none"
+                             viewBox="0 0 1000 100">
+                            <polyline class="noise-line"></polyline>
+                        </svg>
+
+                        <svg class="test-peak"
+                             viewBox="40 0 20 100"
+                             preserveAspectRatio="none">
+
+                            <path class="peak-shape"
+                                  d="M 0 100
+                                    L 30 100
+                                    C 38 99, 41 94, 42 82
+                                    L 46 12
+                                    C 46.5 4, 48 0, 50 0
+                                    C 52 0, 53.5 4, 54 12
+                                    L 58 82
+                                    C 59 94, 62 99, 70 100
+                                    L 100 100
+                                    Z">
+                            </path>
+                        </svg>
+
+                    </div>
+
+                    <div
+                        class="x-axis"
+                        id="x-axis-2"
+                    ></div>
+
+                </div>
+
+
+                <!-- GRAPH 3 -->
+
+                <div class="graph">
+
+                    <div class="graph-header">
+
+                        <div
+                            class="graph-title"
+                            id="graph-title-3"
+                        >
+                            1080.8
+                        </div>
+
+                        <div class="graph-info">
+
+                            <div
+                                class="graph-peak"
+                                id="graph-peak-3"
+                            >
+                                0.00e0
+                            </div>
+
+                            <div
+                                class="graph-gain"
+                                id="graph-gain-3"
+                            >
+                                x10
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="plot-area">
+
+                        <svg class="noise-trace"
+                             preserveAspectRatio="none"
+                             viewBox="0 0 1000 100">
+                            <polyline class="noise-line"></polyline>
+                        </svg>
+
+                        <svg class="test-peak"
+                             viewBox="40 0 20 100"
+                             preserveAspectRatio="none">
+
+                            <path class="peak-shape"
+                                  d="M 0 100
+                                    L 30 100
+                                    C 38 99, 41 94, 42 82
+                                    L 46 12
+                                    C 46.5 4, 48 0, 50 0
+                                    C 52 0, 53.5 4, 54 12
+                                    L 58 82
+                                    C 59 94, 62 99, 70 100
+                                    L 100 100
+                                    Z">
+                            </path>
+                        </svg>
+
+                    </div>
+
+                    <div
+                        class="x-axis"
+                        id="x-axis-3"
+                    ></div>
+
+                </div>
+
+
+                <!-- GRAPH 4 -->
+
+                <div class="graph">
+
+                    <div class="graph-header">
+
+                        <div
+                            class="graph-title"
+                            id="graph-title-4"
+                        >
+                            2034.6
+                        </div>
+
+                        <div class="graph-info">
+
+                            <div
+                                class="graph-peak"
+                                id="graph-peak-4"
+                            >
+                                0.00e0
+                            </div>
+
+                            <div
+                                class="graph-gain"
+                                id="graph-gain-4"
+                            >
+                                x20
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="plot-area">
+
+                        <svg class="noise-trace"
+                             preserveAspectRatio="none"
+                             viewBox="0 0 1000 100">
+                            <polyline class="noise-line"></polyline>
+                        </svg>
+
+                        <svg class="test-peak"
+                             viewBox="40 0 20 100"
+                             preserveAspectRatio="none">
+
+                            <path class="peak-shape"
+                                  d="M 0 100
+                                    L 30 100
+                                    C 38 99, 41 94, 42 82
+                                    L 46 12
+                                    C 46.5 4, 48 0, 50 0
+                                    C 52 0, 53.5 4, 54 12
+                                    L 58 82
+                                    C 59 94, 62 99, 70 100
+                                    L 100 100
+                                    Z">
+                            </path>
+                        </svg>
+
+                    </div>
+
+                    <div
+                        class="x-axis"
+                        id="x-axis-4"
+                    ></div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =============================================
+                 10. BOTTOM OPERATE / STANDBY CONTROLS
+                 ============================================= -->
+
+            <div class="bottom-controls">
+
+                <div class="instrument-controls">
+
+                    <!-- BUTTONS AND STATUS LIGHT -->
+
+                    <div class="operate-controls">
+
+                        <button
+                            id="operate-button"
+                            class="mode-button"
+                            title="Operate"
+                        >
+                            I
+                        </button>
+
+                        <button
+                            id="standby-button"
+                            class="mode-button"
+                            title="Standby"
+                            disabled
+                        >
+                            O
+                        </button>
+
+                        <div
+                            id="operate-indicator"
+                            class="status-light"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+		<!-- STATUS BAR -->
+
+		<div id="status-text">
+
+   		   <span id="copyright-text">
+       		      Quad Quest © 2026 Jonathan Crellin (v 1.0)
+   		   </span>
+
+    		   <span id="status-value">
+        	      Status: Standby
+    		   </span>
+
+		</div>
+
+            </div>
+
+
+        </div>
+        <!-- END RIGHT SIDE -->
+
+
+    </div>
+    <!-- END TUNE PAGE -->
+
+
+    <!-- =====================================================
+         11. JAVASCRIPT
+         Loaded last so the HTML elements exist before
+         script.js tries to access them.
+         ===================================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
