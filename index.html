@@ -1,11 +1,5 @@
-<!--	
-	Quad Quest
-
-	© 2026 Jonathan Crellin
-
-	Quad Quest is an independent educational simulation
-	and is not affiliated with or endorsed by Waters Corporation.
--->
+<!-- Quad Quest © 2026 Jonathan Crellin
+Independent educational simulation; not affiliated with or endorsed by Waters Corporation. -->
 
 
 <!DOCTYPE html>
@@ -14,9 +8,7 @@
 
 <head>
 
-    <!-- =====================================================
-         1. PAGE SETUP
-         ===================================================== -->
+    <!-- Page -->
 
     <title>Quad Quest</title>
 
@@ -28,46 +20,29 @@
 <body>
 
 
-    <!-- =====================================================
-         2. PAGE TITLE
-         ===================================================== -->
+    <!-- Page / Title -->
 
     <h1>Quad Quest</h1>
 
 
-    <!-- =====================================================
-         3. MAIN TUNE PAGE
-         =====================================================
-         Left side:
-             Fluidics
-             MS1 Engineer Settings
-
-         Right side:
-             Mass / Span / Gain settings
-             Four mass spectrum graphs
-             Operate / Standby controls
-         ===================================================== -->
+    <!-- Layout -->
 
     <div class="tune-page">
 
 
-        <!-- =================================================
-             4. LEFT SIDE
-             ================================================= -->
+        <!-- Layout / Left Panel -->
 
         <div class="left-side">
 
 
-            <!-- =============================================
-                 5. FLUIDICS
-                 ============================================= -->
+            <!-- Fluidics -->
 
             <fieldset class="fluidics-box">
 
                 <legend>Flow Control</legend>
 
 
-                <!-- FLOW CONTROL BUTTONS -->
+                
 
                 <div class="flow-buttons">
 
@@ -76,13 +51,11 @@
                     <button id="refill-button">Refill</button>
 
                     <button id="purge-button">Purge</button>
-
-                    <button id="dark-mode-button">Dark Mode</button>
-
+                    
                 </div>
 
 
-                <!-- FLUIDICS STATUS -->
+                
 
                 <div class="fluidics-row">
 
@@ -101,7 +74,7 @@
                 </div>
 
 
-                <!-- INFUSION FLOW RATE -->
+                
 
                 <div class="fluidics-row">
 
@@ -121,7 +94,7 @@
                 </div>
 
 
-                <!-- RESERVOIR -->
+                
 
                 <div class="fluidics-row">
 
@@ -142,7 +115,7 @@
                 </div>
 
 
-                <!-- FLOW STATE -->
+                
 
                 <div class="fluidics-row">
 
@@ -165,7 +138,7 @@
                 </div>
 
 
-                <!-- FILL VOLUME -->
+                
 
                 <div class="fluidics-row">
 
@@ -190,16 +163,14 @@
             </fieldset>
 
 
-            <!-- =============================================
-                 6. MS1 ENGINEER SETTINGS
-                 ============================================= -->
+            <!-- Engineer Settings -->
 
             <fieldset class="engineer-box">
 
                 <legend>MS1</legend>
 
 
-                <!-- LOW MASS POSITION -->
+                
 
                 <div class="engineer-row">
 
@@ -226,7 +197,7 @@
                 </div>
 
 
-                <!-- HIGH MASS POSITION -->
+                
 
                 <div class="engineer-row">
 
@@ -253,7 +224,7 @@
                 </div>
 
 
-                <!-- LOW MASS RESOLUTION -->
+                
 
                 <div class="engineer-row">
 
@@ -280,7 +251,7 @@
                 </div>
 
 
-                <!-- HIGH MASS RESOLUTION -->
+                
 
                 <div class="engineer-row">
 
@@ -307,7 +278,7 @@
                 </div>
 
 
-                <!-- RESOLUTION LINEARITY -->
+                
 
                 <div class="engineer-row">
 
@@ -336,9 +307,7 @@
             </fieldset>
 
 
-            <!-- =============================================
-                 RESOLUTION CHECK
-                 ============================================= -->
+            <!-- Resolution Check -->
 
             <fieldset class="resolution-check-box">
 
@@ -350,6 +319,10 @@
 
                 <button id="resolution-check-reset">
                     Reset
+                </button>
+
+                <button id="dark-mode-button">
+                    Dark Mode
                 </button>
 
                 <button id="resolution-check-info">
@@ -391,16 +364,12 @@
 
 
 
-        <!-- =================================================
-             7. RIGHT SIDE
-             ================================================= -->
+        <!-- Layout / Right Panel -->
 
         <div class="right-side">
 
 
-            <!-- =============================================
-                 8. MASS / SPAN / GAIN SETTINGS
-                 ============================================= -->
+            <!-- Mass / Span / Gain -->
 
             <div class="mass-settings">
 
@@ -421,7 +390,7 @@
                     </tr>
 
 
-                    <!-- GRAPH 1 SETTINGS -->
+                    <!-- Graph 1 Settings -->
 
                     <tr>
 
@@ -463,7 +432,7 @@
                     </tr>
 
 
-                    <!-- GRAPH 2 SETTINGS -->
+                    <!-- Graph 2 Settings -->
 
                     <tr>
 
@@ -505,7 +474,7 @@
                     </tr>
 
 
-                    <!-- GRAPH 3 SETTINGS -->
+                    <!-- Graph 3 Settings -->
 
                     <tr>
 
@@ -547,7 +516,7 @@
                     </tr>
 
 
-                    <!-- GRAPH 4 SETTINGS -->
+                    <!-- Graph 4 Settings -->
 
                     <tr>
 
@@ -593,31 +562,12 @@
             </div>
 
 
-            <!-- =============================================
-                 9. MASS SPECTRUM GRAPHS
-                 =============================================
-                 Each graph contains:
-
-                     graph-header
-                         graph-title
-                         graph-info
-                             graph-peak
-                             graph-gain
-
-                     plot-area
-                         test-peak
-
-                     x-axis
-
-                 IMPORTANT:
-                 plot-area closes BEFORE x-axis.
-                 Each graph closes BEFORE the next graph begins.
-                 ============================================= -->
+            <!-- Spectrum Graphs -->
 
             <div class="graphs">
 
 
-                <!-- GRAPH 1 -->
+                <!-- Graph 1 -->
 
                 <div class="graph">
 
@@ -686,7 +636,7 @@
                 </div>
 
 
-                <!-- GRAPH 2 -->
+                <!-- Graph 2 -->
 
                 <div class="graph">
 
@@ -755,7 +705,7 @@
                 </div>
 
 
-                <!-- GRAPH 3 -->
+                <!-- Graph 3 -->
 
                 <div class="graph">
 
@@ -824,7 +774,7 @@
                 </div>
 
 
-                <!-- GRAPH 4 -->
+                <!-- Graph 4 -->
 
                 <div class="graph">
 
@@ -896,15 +846,13 @@
             </div>
 
 
-            <!-- =============================================
-                 10. BOTTOM OPERATE / STANDBY CONTROLS
-                 ============================================= -->
+            <!-- Operate / Standby -->
 
             <div class="bottom-controls">
 
                 <div class="instrument-controls">
 
-                    <!-- BUTTONS AND STATUS LIGHT -->
+                    
 
                     <div class="operate-controls">
 
@@ -935,7 +883,7 @@
                 </div>
 
 
-		<!-- STATUS BAR -->
+		
 
 		<div id="status-text">
 
@@ -953,18 +901,14 @@
 
 
         </div>
-        <!-- END RIGHT SIDE -->
+        
 
 
     </div>
-    <!-- END TUNE PAGE -->
+    
 
 
-    <!-- =====================================================
-         11. JAVASCRIPT
-         Loaded last so the HTML elements exist before
-         script.js tries to access them.
-         ===================================================== -->
+    <!-- Initialization -->
 
     <script src="script.js"></script>
 

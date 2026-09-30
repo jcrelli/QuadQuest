@@ -1,18 +1,7 @@
-/* ======================================================
-   Quad Quest
+/* Quad Quest © 2026 Jonathan Crellin
+Independent educational simulation; not affiliated with or endorsed by Waters Corporation. */
 
-   © 2026 Jonathan Crellin
-
-   Quad Quest is an independent educational simulation
-   and is not affiliated with or endorsed by Waters Corporation.
-   ====================================================== */
-
-
-
-/* ======================================================
-   1. PAGE
-   Base page appearance and overflow behavior.
-   ====================================================== */
+/* Page */
 
 html,
 body {
@@ -36,11 +25,7 @@ h1 {
     margin: 0 0 6px 2px;
 }
 
-
-/* ======================================================
-   2. MAIN TUNE PAGE
-   Places the left controls and right graph area side by side.
-   ====================================================== */
+/* Layout */
 
 .tune-page {
     display: flex;
@@ -49,25 +34,33 @@ h1 {
     min-height: 0;
 }
 
-
-/* ======================================================
-   3. LEFT SIDE
-   Fixed-width Fluidics and Engineer control column.
-   ====================================================== */
-
 .left-side {
     width: 35%;
     min-width: 360px;
     padding-right: 5px;
+    padding-bottom: 50px;
     box-sizing: border-box;
     border-right: 2px groove #cccccc;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
+.right-side {
+    flex: 1;
+    min-width: 0;
+    padding-left: 4px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
 
-/* ======================================================
-   4. FIELDSETS
-   Old-school instrument-style group boxes.
-   ====================================================== */
+.right-side {
+    position: relative;
+}
+
+/* Shared Controls */
 
 fieldset {
     border: 1px solid #cccccc;
@@ -79,11 +72,41 @@ legend {
     padding: 0 3px;
 }
 
+input[type="number"] {
+    background: white;
+    border: 2px inset #cccccc;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
 
-/* ======================================================
-   5. FLUIDICS
-   Layout for flow controls, reservoir selection, and status.
-   ====================================================== */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button,
+select,
+input {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+select {
+    background: #eeeeee;
+    border: 1px solid #999999;
+}
+
+button {
+    background: #eeeeee;
+    border: 2px outset #cccccc;
+}
+
+button:active {
+    border: 2px inset #cccccc;
+}
+
+/* Fluidics */
 
 .fluidics-box {
     width: 320px;
@@ -126,11 +149,6 @@ legend {
     margin-right: 8px;
 }
 
-/* ======================================================
-   FLUIDICS STATUS / RESERVOIR BAR
-   Displays remaining reservoir volume and status text.
-   ====================================================== */
-
 #fluidics-status {
     position: relative;
     width: 200px;
@@ -169,11 +187,7 @@ legend {
     z-index: 1;
 }
 
-
-/* ======================================================
-   6. ENGINEER SETTINGS
-   Number boxes and sliders for tuning parameters.
-   ====================================================== */
+/* Engineer Settings */
 
 .engineer-box {
     width: 380px;
@@ -202,10 +216,7 @@ legend {
     width: 150px;
 }
 
-
-/* ======================================================
-   RESOLUTION CHECK
-   ====================================================== */
+/* Resolution Check */
 
 .resolution-check-box {
     width: 320px;
@@ -231,48 +242,14 @@ legend {
 #resolution-check-info-box {
     display: none;
     width: 320px;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
     box-sizing: border-box;
     text-align: justify;
 }
 
-/* ======================================================
-   7. NUMBER INPUTS
-   Shared appearance for numeric entry boxes.
-   ====================================================== */
-
-input[type="number"] {
-    background: white;
-    border: 2px inset #cccccc;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-
-/* ======================================================
-   8. RIGHT SIDE
-   Contains mass settings, four spectra, and bottom controls.
-   ====================================================== */
-
-.right-side {
-    flex: 1;
-    min-width: 0;
-    padding-left: 4px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* ======================================================
-   9. MASS SETTINGS
-   Four Mass / Span / Gain input rows.
-   ====================================================== */
+/* Mass / Span / Gain */
 
 .mass-settings {
     height: 150px;
@@ -304,12 +281,64 @@ input[type="number"]::-webkit-outer-spin-button {
     box-sizing: border-box;
 }
 
+.gain-drag-cursor {
+    display: none;
 
-/* ======================================================
-   10. GRAPH AREA
-   .graphs keeps all FOUR graph windows horizontally aligned.
-   .graph stacks each graph's header, plot, and X axis vertically.
-   ====================================================== */
+    position: absolute;
+
+    bottom: 0;
+
+    width: 1px;
+    height: 100px;
+
+    background: #000000;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+.gain-cursor-top {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 14px;
+    height: 1px;
+
+    background: #000000;
+
+    transform: translateX(-50%);
+}
+
+.gain-cursor-bottom {
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    width: 14px;
+    height: 1px;
+
+    background: #000000;
+
+    transform: translateX(-50%);
+}
+
+.quad-quest-logo {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.quad-quest-logo img {
+    height: 110px;
+    width: auto;
+    display: block;
+}
+
+/* Spectrum Graphs */
 
 .graphs {
     display: flex;
@@ -335,13 +364,6 @@ input[type="number"]::-webkit-outer-spin-button {
     display: flex;
     flex-direction: column;
 }
-
-
-/* ======================================================
-   11. GRAPH HEADER
-   Line 1: centered mass.
-   Line 2: peak intensity on left and gain on right.
-   ====================================================== */
 
 .graph-header {
     height: 34px;
@@ -378,10 +400,90 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #777777;
 }
 
+.plot-area {
+    flex: 1 1 0;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
 
-/* ======================================================
-   12. BOTTOM OPERATE / STANDBY CONTROLS
-   ====================================================== */
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #f0fbff 0,
+            #f0fbff calc(12.5% - 1px),
+            #888888 calc(12.5% - 1px),
+            #888888 12.5%
+        );
+}
+
+.test-peak {
+    display: none;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: bottom;
+
+    width:
+        calc(var(--peak-half-width, 12px) * 2);
+
+    height:
+        var(--peak-height, 150px);
+
+    overflow: visible;
+}
+
+.peak-shape {
+    fill: #800000;
+    stroke: #800000;
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.noise-trace {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+.noise-line {
+    fill: #800000;
+
+    stroke: #800000;
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.x-axis {
+    height: 25px;
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding: 3px 4px 0 4px;
+    box-sizing: border-box;
+
+    background: #eeeeee;
+    border-top: 1px solid #888888;
+
+    font-size: 11px;
+
+    user-select: none;
+}
+
+/* Operate / Standby */
 
 .bottom-controls {
     position: fixed;
@@ -459,225 +561,12 @@ input[type="number"]::-webkit-outer-spin-button {
     top: 3px;
 }
 
-
-
-/* ======================================================
-   13. GENERAL CONTROLS
-   Shared button, select, and input appearance.
-   ====================================================== */
-
-button,
-select,
-input {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-}
-
-select {
-    background: #eeeeee;
-    border: 1px solid #999999;
-}
-
-button {
-    background: #eeeeee;
-    border: 2px outset #cccccc;
-}
-
-button:active {
-    border: 2px inset #cccccc;
-}
-
-
-/* ======================================================
-   14. GRAPH PLOT AREA
-   Expands to fill each graph. Relative positioning keeps
-   temporary peaks inside the plot instead of affecting layout.
-   ====================================================== */
-
-.plot-area {
-    flex: 1 1 0;
-    min-height: 0;
-    position: relative;
-    overflow: hidden;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            #f0fbff 0,
-            #f0fbff calc(12.5% - 1px),
-            #888888 calc(12.5% - 1px),
-            #888888 12.5%
-        );
-}
-
-/* ======================================================
-   15. TEST PEAKS
-   Hidden by default. JavaScript displays it only when the
-   instrument is Operate + Infusing + Flow State Infusion.
-   ====================================================== */
-
-/*
-    Peak height is controlled by JavaScript.
-
-    The peak is drawn as a triangle using borders.
-    JavaScript changes --peak-height to control
-    how tall each individual peak appears.
-*/
-
-.test-peak {
-    display: none;
-
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-
-    transform: translateX(-50%) scaleY(0);
-    transform-origin: bottom;
-
-    width:
-        calc(var(--peak-half-width, 12px) * 2);
-
-    height:
-        var(--peak-height, 150px);
-
-    overflow: visible;
-}
-
-.peak-shape {
-    fill: #800000;
-    stroke: #800000;
-    stroke-width: 1;
-
-    vector-effect: non-scaling-stroke;
-}
-
-
-/* =====================================================
-   16. NOISE TRACE
-   ===================================================== */
-
-.noise-trace {
-    position: absolute;
-
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 100%;
-
-    pointer-events: none;
-}
-
-.noise-line {
-    fill: #800000;
-
-    stroke: #800000;
-    stroke-width: 1;
-
-    vector-effect: non-scaling-stroke;
-}
-
-
-/* ======================================================
-   17. GRAPH X AXIS
-   Five mass labels calculated from Mass and Span.
-   ====================================================== */
-
-.x-axis {
-    height: 25px;
-    flex-shrink: 0;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    padding: 3px 4px 0 4px;
-    box-sizing: border-box;
-
-    background: #eeeeee;
-    border-top: 1px solid #888888;
-
-    font-size: 11px;
-
-    user-select: none;
-}
-
-
-/* ======================================================
-   18. DRAG-TO-SET GAIN CURSOR
-   ====================================================== */
-
-/*
-    Vertical measurement cursor.
-
-    The bottom stays on the graph baseline.
-    The top follows the mouse while dragging.
-*/
-
-.gain-drag-cursor {
-    display: none;
-
-    position: absolute;
-
-    bottom: 0;
-
-    width: 1px;
-    height: 100px;
-
-    background: #000000;
-
-    z-index: 10;
-
-    pointer-events: none;
-}
-
-
-/* Top horizontal cap */
-
-.gain-cursor-top {
-    position: absolute;
-
-    top: 0;
-    left: 50%;
-
-    width: 14px;
-    height: 1px;
-
-    background: #000000;
-
-    transform: translateX(-50%);
-}
-
-
-/* Bottom horizontal cap */
-
-.gain-cursor-bottom {
-    position: absolute;
-
-    bottom: 0;
-    left: 50%;
-
-    width: 14px;
-    height: 1px;
-
-    background: #000000;
-
-    transform: translateX(-50%);
-}
-
-
-/* ======================================================
-   19. DARK MODE
-   Softer dark version of the Quad Quest interface.
-   ====================================================== */
+/* Dark Mode */
 
 body.dark-mode {
     background: #303234;
     color: #d6d6d6;
 }
-
-
-/* Main panel borders */
 
 body.dark-mode .left-side {
     border-right-color: #4a4c4e;
@@ -687,17 +576,11 @@ body.dark-mode fieldset {
     border-color: #4a4c4e;
 }
 
-
-/* Number inputs */
-
 body.dark-mode input[type="number"] {
     background: #3a3c3e;
     color: #d6d6d6;
     border-color: #505254;
 }
-
-
-/* Buttons and dropdowns */
 
 body.dark-mode button,
 body.dark-mode select {
@@ -712,9 +595,6 @@ body.dark-mode button:disabled {
     border-color: #454749;
 }
 
-
-/* Fluidics status */
-
 body.dark-mode #fluidics-status {
     background: #383a3c;
     border-color: #4a4c4e;
@@ -724,31 +604,25 @@ body.dark-mode #fluidics-status-text {
     color: #d6d6d6;
 }
 
-
-/* Fluidics reservoir bar */
-
 body.dark-mode #reservoir-bar {
     background: #667896;
 }
 
-/* Graph container */
-
+body.dark-mode #resolution-check-info-box {
+    background: #303234;
+    color: #d6d6d6;
+    scrollbar-color: #666666 #303234;
+}
 
 body.dark-mode .graphs {
     background: #303234;
     border-color: #4a4c4e;
 }
 
-
-/* Individual graph */
-
 body.dark-mode .graph {
     background: #292b2d;
     border-color: #4a4c4e;
 }
-
-
-/* Graph header */
 
 body.dark-mode .graph-header {
     background: #383a3c;
@@ -768,9 +642,6 @@ body.dark-mode .graph-gain {
     color: #a8aaac;
 }
 
-
-/* Spectrum plot */
-
 body.dark-mode .plot-area {
     background:
         repeating-linear-gradient(
@@ -782,9 +653,6 @@ body.dark-mode .plot-area {
         );
 }
 
-
-/* Peak and noise color */
-
 body.dark-mode .peak-shape {
     fill: #b85c5c;
     stroke: #b85c5c;
@@ -795,17 +663,11 @@ body.dark-mode .noise-line {
     stroke: #b85c5c;
 }
 
-
-/* X axis */
-
 body.dark-mode .x-axis {
     background: #383a3c;
     color: #d6d6d6;
     border-top-color: #4a4c4e;
 }
-
-
-/* Bottom controls */
 
 body.dark-mode .bottom-controls {
     background: #303234;
@@ -816,32 +678,8 @@ body.dark-mode #status-text {
     border-top-color: #4a4c4e;
 }
 
-
-/* Gain drag cursor */
-
 body.dark-mode .gain-drag-cursor,
 body.dark-mode .gain-cursor-top,
 body.dark-mode .gain-cursor-bottom {
     background: #d0d0d0;
-}
-
-
-/* ======================================================
-   20. QUAD QUEST LOGO
-   ====================================================== */
-
-.right-side {
-    position: relative;
-}
-
-.quad-quest-logo {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-}
-
-.quad-quest-logo img {
-    height: 110px;
-    width: auto;
-    display: block;
 }
