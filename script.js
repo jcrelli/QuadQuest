@@ -1,5 +1,4 @@
-/* Quad Quest © 2026 Jonathan Crellin
-Independent educational simulation; not affiliated with or endorsed by Waters Corporation. */
+/* Quad Quest is an independent educational simulator, and is not affiliated with or endorsed by Waters Corporation. */
 
 // Fluidics
 
@@ -579,10 +578,36 @@ function updateOnePeakSignal(graphIndex) {
                 spectrumPeakIndex
             ].signal;
 
+        let flowSignalMultiplier;
+
+        if (committedFlowRate <= 10) {
+
+            flowSignalMultiplier =
+                committedFlowRate / 10;
+
+        }
+
+        else if (committedFlowRate < 20) {
+
+            flowSignalMultiplier =
+                1.00 +
+                ((committedFlowRate - 10) / 10) *
+                0.20;
+
+        }
+
+        else {
+
+            flowSignalMultiplier =
+                1.20;
+
+        }
+
         const measuredSignal =
             idealSignal *
             currentScale *
-            variation;
+            variation *
+            flowSignalMultiplier;
 
         if (
             measuredSignal >
@@ -2240,6 +2265,26 @@ resolutionPlayAgain.addEventListener("click", function () {
 
 });
 
+function setResolutionControlsDisabled(disabled) {
+
+    const controls =
+        document.querySelectorAll(
+            ".engineer-box input, " +
+            "[id^='mass-'], " +
+            "[id^='span-'], " +
+            "[id^='gain-'], " +
+            "[id^='graph-enabled-']"
+        );
+
+    controls.forEach(function (control) {
+
+        control.disabled =
+            disabled;
+
+    });
+
+}
+
 resolutionCheckStart.addEventListener("click", function () {
 
     if (resolutionCheckStart.textContent === "Stop") {
@@ -2250,6 +2295,8 @@ resolutionCheckStart.addEventListener("click", function () {
 
         resolutionCheckOutput.textContent = "";
         resolutionCheckStart.textContent = "Start";
+
+        setResolutionControlsDisabled(false);
 
         return;
     }
@@ -2276,6 +2323,8 @@ resolutionCheckStart.addEventListener("click", function () {
     resolutionCheckStart.textContent = "Stop";
 
     resolutionCheckOutput.textContent = "";
+
+    setResolutionControlsDisabled(true);
 
     const lmPosition =
         parseFloat(
@@ -2377,9 +2426,6 @@ resolutionCheckStart.addEventListener("click", function () {
                 measuredMass - mass
             );
 
-        const massInRange =
-            massError <= 0.50;
-
         const basePeakMassWidth =
             0.75;
 
@@ -2402,11 +2448,13 @@ resolutionCheckStart.addEventListener("click", function () {
 
         let minFWHH;
         let maxFWHH;
+        let massTolerance;
 
         if (fillVolume === 250) {
 
             minFWHH = 0.40;
             maxFWHH = 0.60;
+            massTolerance = 1.0;
 
         }
 
@@ -2414,6 +2462,7 @@ resolutionCheckStart.addEventListener("click", function () {
 
             minFWHH = 0.45;
             maxFWHH = 0.55;
+            massTolerance = 0.5;
 
         }
 
@@ -2421,13 +2470,19 @@ resolutionCheckStart.addEventListener("click", function () {
 
             minFWHH = 0.49;
             maxFWHH = 0.51;
+            massTolerance = 0.2;
 
         }
+
+        const massInRange =
+            massError <= massTolerance;
 
         if (!massInRange) {
 
             resultText =
-                "Not Detected (\u00B10.5 Da)";
+                "Not Detected (\u00B1" +
+                massTolerance.toFixed(1) +
+                " Da)";
 
             allPassed = false;
 
@@ -2581,6 +2636,8 @@ resolutionCheckStart.addEventListener("click", function () {
 
                 resolutionCheckStart.textContent =
                     "Start";
+
+                setResolutionControlsDisabled(false);
 
                 if (allPassed) {
 
