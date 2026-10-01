@@ -1846,17 +1846,33 @@ const simulatedSpectra = {
         { mass: 60.1,   signal: 8.00e7 },
         { mass: 61.1,   signal: 1.00e7 },
 
-        { mass: 174.1,  signal: 4.00e7 },
-        { mass: 175.1,  signal: 1.00e8 },
-        { mass: 176.1,  signal: 5.00e7 },
+        { mass: 174.1,  signal: 3.00e7 },
+        { mass: 175.1,  signal: 6.00e7 },
+        { mass: 176.1,  signal: 4.00e7 },
 
         { mass: 454.3,  signal: 4.00e7 },
         { mass: 455.3,  signal: 5.00e7 },
         { mass: 456.3,  signal: 1.00e7 },
 
+        { mass: 556.3,  signal: 4.00e7 },
+        { mass: 557.3,  signal: 2.00e7 },
+        { mass: 558.3,  signal: 4.00e6 },
+
+        { mass: 674.5,  signal: 5.00e6 },
+        { mass: 732.5,  signal: 1.00e7 },
+        { mass: 790.6,  signal: 2.00e7 },
+        { mass: 848.7,  signal: 3.00e7 },
+        { mass: 906.7,  signal: 3.50e7 },
+        { mass: 964.8,  signal: 3.00e7 },
+        { mass: 1022.8, signal: 2.00e7 },
+
+        { mass: 1026.8, signal: 8.00e7 },
+
         { mass: 1080.8, signal: 1.00e7 },
         { mass: 1081.8, signal: 6.00e6 },
         { mass: 1082.8, signal: 2.00e6 },
+
+        { mass: 1138.8, signal: 5.00e6 },
 
         { mass: 2034.6, signal: 5.00e6 },
         { mass: 2035.6, signal: 4.00e6 },
